@@ -3,7 +3,7 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 let todoList = [];
 let conditions = true;
-console.log(chalk.cyan.bold("\n \tGood day! What can we achieve together today?\n"));
+console.log(chalk.cyan.bold("\n \tGood day! What can we achieve together today?"));
 console.log(chalk.red.bold("-".repeat(60)));
 let main = async () => {
     while (conditions) {
@@ -11,7 +11,7 @@ let main = async () => {
             {
                 name: "choice",
                 type: "list",
-                message: chalk.green.bold("What's your next move? Choose an option:"),
+                message: chalk.green.bold("\nWhat's your next move? Choose an option:\n"),
                 choices: [
                     "Add New Task",
                     "Remove Task",
@@ -34,6 +34,7 @@ let main = async () => {
             await showTask();
         }
         else if (option.choice === "Close App") {
+            console.log(chalk.red.bold("\nGoodbye! Have a productive day ahead!\n"));
             conditions = false;
         }
     }
@@ -48,13 +49,13 @@ let addTask = async () => {
         },
     ]);
     todoList.push(newTask.task);
-    console.log(chalk.bold(`\n ${chalk.bold.cyan(newTask.task)} added to your to-do list!`));
+    console.log(chalk.bold(`${chalk.bold.cyan(newTask.task)} added to your to-do list!`));
 };
 // Function to show all to-do list task:
 let showTask = () => {
     console.log(chalk.blue.bold("\nYour to-dos: \n"));
     todoList.forEach((task, index) => {
-        console.log(`${index + 1} : ${task}`);
+        console.log(`${index + 1}. ${task}`);
     });
 };
 // Function to remove a task from the to-do list:
@@ -64,11 +65,11 @@ let removeTask = async () => {
         {
             name: "index",
             type: "number",
-            message: chalk.yellow.bold("Enter the 'index no.' of the task you want to remove from your to-do list."),
+            message: chalk.yellow("Enter the number of the task you want to remove from your to-do list."),
         },
     ]);
     let removeTask = todoList.splice(taskIndex.index - 1, 1);
-    console.log(chalk.bold(`\n The ${chalk.cyan.bold(removeTask)} task is no longer on your list!`));
+    console.log(chalk.bold(`The ${chalk.cyan.bold(removeTask)} task is no longer on your list!`));
 };
 // Function to edit a task:
 let editTask = async () => {
@@ -77,7 +78,7 @@ let editTask = async () => {
         {
             name: "index",
             type: "number",
-            message: chalk.yellow.bold("Input the 'index no' of task you want to edit:"),
+            message: chalk.yellow("\nInput the number of the task you want to edit:"),
         },
         {
             name: "new_task",
@@ -86,6 +87,6 @@ let editTask = async () => {
         },
     ]);
     todoList[edit_task_index.index - 1] = edit_task_index.new_task;
-    console.log(chalk.bold(`\n Your to-do list is now edit at index ${edit_task_index.index - 1}.`));
+    console.log(chalk.bold(`Your to-do list is now edited at number ${chalk.cyan.bold(edit_task_index.index)}.`));
 };
 main();

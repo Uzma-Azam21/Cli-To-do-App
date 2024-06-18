@@ -1,6 +1,6 @@
 {
   "name": "cli-to-do-app-31",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ToDo CLI: A fast and simple command-line tool to manage your tasks. Stay organized and productive with easy task additions, removals, and views and edits.",
   "main": "index.js",
   "type": "module",
